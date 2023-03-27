@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Prueba Marvel</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="character_image">CharacterImage</string>
+    <string name="comic_image">Comic Image</string>
+    <string name="character_name">CharacterName</string>
+    <string name="marvel_universe_app">MARVEL</string>
+    <string name="hulk_id">1009351</string>
+    <string name="thor_id">1009664</string>
+    <string name="iron_man_id">1009368</string>
+    <string name="captain_america_id">1009220</string>
+    <string name="iniciar">INICIAR</string>
+</resources>
