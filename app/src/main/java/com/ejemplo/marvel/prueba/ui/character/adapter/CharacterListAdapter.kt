@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ejemplo.marvel.prueba.R
 import com.ejemplo.marvel.prueba.domain.model.CharacterModel
-import com.ejemplo.marvel.prueba.ui.comicslist.ComicListActivity
+import com.ejemplo.marvel.prueba.ui.comic.ComicListActivity
 import com.ejemplo.marvel.prueba.utils.GlobalConstants
 import kotlinx.coroutines.*
 

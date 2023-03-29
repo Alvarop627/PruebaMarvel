@@ -23,6 +23,7 @@ interface MarvelApi {
     @GET("/v1/public/characters/{characterId}/comics")
     suspend fun getComicListByCharacterId(
         @Path("characterId") characterId: String,
+        @Query("offset") offset: Int,
         @Query("ts") ts: String = GlobalConstants.timeStamp,
         @Query("apikey") apikey: String = GlobalConstants.API_KEY,
         @Query("hash") hash: String = GlobalConstants.hash(),

@@ -13,7 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PruebaMarvel">
         <activity
-            android:name="com.ejemplo.marvel.prueba.ui.comicslist.ComicListActivity"
+            android:name="com.ejemplo.marvel.prueba.ui.comic.ComicListActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.ejemplo.marvel.prueba.ui.comicdetail.ComicDetailActivity"
             android:exported="true" />
         <activity
             android:name="com.ejemplo.marvel.prueba.ui.home.HomeActivity"

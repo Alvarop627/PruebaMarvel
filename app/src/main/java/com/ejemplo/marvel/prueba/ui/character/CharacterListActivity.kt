@@ -51,7 +51,7 @@ class CharacterListActivity : AppCompatActivity() {
                 }
                 characterState.error.isNotBlank() -> {
                     binding.progressCircular.visibility = View.GONE
-                    Toast.makeText(this@CharacterListActivity, characterState.error, Toast.LENGTH_LONG)
+                    Toast.makeText(this, characterState.error, Toast.LENGTH_LONG)
                         .show()
                 }
                 characterState.marvelCharacter.isNotEmpty() -> {
