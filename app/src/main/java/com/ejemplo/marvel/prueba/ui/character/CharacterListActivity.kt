@@ -7,16 +7,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.ejemplo.marvel.prueba.databinding.ActivityMainBinding
+import com.ejemplo.marvel.prueba.R
+import com.ejemplo.marvel.prueba.databinding.ActivityCharacterListBinding
 import com.ejemplo.marvel.prueba.domain.model.CharacterModel
-import com.ejemplo.marvel.prueba.ui.character.viewmodel.CharacterViewModel
 import com.ejemplo.marvel.prueba.ui.character.adapter.CharacterListAdapter
+import com.ejemplo.marvel.prueba.ui.character.viewmodel.CharacterViewModel
 import com.ejemplo.marvel.prueba.utils.GlobalConstants
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class CharacterListActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityCharacterListBinding
     private lateinit var adapter: CharacterListAdapter
     private lateinit var characterViewModel: CharacterViewModel
 
@@ -31,16 +32,22 @@ class CharacterListActivity : AppCompatActivity() {
     var list = arrayListOf<CharacterModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityCharacterListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        binding.characterRecyclerView.layoutManager = GridLayoutManager(this, 2)
-        recyclerViewCharacters()
+        setScreenConfig()
 
         characterViewModel = ViewModelProvider(this).get(CharacterViewModel::class.java)
-
         observeViewmodel()
         callCharactersList()
+    }
+
+    private fun setScreenConfig() {
+        binding.characterRecyclerView.layoutManager = GridLayoutManager(this, 2)
+        recyclerViewCharacters()
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        binding.root.setBackgroundResource(R.drawable.fondomarvel)
     }
 
     private fun observeViewmodel() {
@@ -51,7 +58,7 @@ class CharacterListActivity : AppCompatActivity() {
                 }
                 characterState.error.isNotBlank() -> {
                     binding.progressCircular.visibility = View.GONE
-                    Toast.makeText(this@CharacterListActivity, characterState.error, Toast.LENGTH_LONG)
+                    Toast.makeText(this, characterState.error, Toast.LENGTH_LONG)
                         .show()
                 }
                 characterState.marvelCharacter.isNotEmpty() -> {
@@ -107,6 +114,11 @@ class CharacterListActivity : AppCompatActivity() {
             this.charactersList.sortBy { it.name }
             adapter.setData(this.charactersList)
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 }

@@ -16,7 +16,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.root.setBackgroundResource(R.drawable.marvel)
+        binding.root.setBackgroundResource(R.drawable.fondohome)
         binding.button.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
         binding.button.setTextColor(ContextCompat.getColor(this, R.color.black))
         setListeners()

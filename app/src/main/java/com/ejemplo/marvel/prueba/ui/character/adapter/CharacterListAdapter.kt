@@ -3,7 +3,6 @@ package com.ejemplo.marvel.prueba.ui.character.adapter
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.provider.SyncStateContract.Constants
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +42,7 @@ class CharacterListAdapter(private val context: Context, var itemList:ArrayList<
         holder.cardCharacter.setOnClickListener{
             val intent = Intent(context, ComicListActivity::class.java)
             intent.putExtra("id",itemSelected.id.toString())
+            intent.putExtra("characterName", itemSelected.name)
             context.startActivity(intent)
         }
     }

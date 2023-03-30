@@ -13,7 +13,7 @@ class MarvelRepositoryImplementation @Inject constructor(
         return api.getCharacterById(id)
     }
 
-    override suspend fun getComicListByCharacterId(id: String): ComicDTO {
-        return api.getComicListByCharacterId(id)
+    override suspend fun getComicListByCharacterId(id: String, offset: Int): ComicDTO {
+        return api.getComicListByCharacterId(id,offset)
     }
 }
