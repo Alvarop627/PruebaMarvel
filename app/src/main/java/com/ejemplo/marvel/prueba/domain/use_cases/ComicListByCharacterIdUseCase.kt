@@ -1,5 +1,6 @@
 package com.ejemplo.marvel.prueba.domain.use_cases
 
+import android.util.Log
 import com.ejemplo.marvel.prueba.domain.model.ComicModel
 import com.ejemplo.marvel.prueba.domain.repository.MarvelRepository
 import com.ejemplo.marvel.prueba.utils.State

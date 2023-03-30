@@ -57,9 +57,8 @@ class ComicViewModel @Inject constructor(
                 is State.Error -> {
                     comicListState.postValue(
                         ComicState(
-                            error = if(it.data!=null){it.message}else{
-                                "The service has returned a null value."
-                            }?: "An Unexpected Error"
+                            error = (if(it.data!=null){it.message} else { "Se está retornando un valor nulo"
+                            } ?: "Error inesperado")
                         )
                     )
                 }

@@ -1,4 +1,4 @@
-package com.ejemplo.marvel.prueba.ui.comic
+package com.ejemplo.marvel.prueba.ui.comicslist
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,11 +8,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.ejemplo.marvel.prueba.R
 import com.ejemplo.marvel.prueba.databinding.ActivityComicsListBinding
 import com.ejemplo.marvel.prueba.domain.model.ComicModel
 import com.ejemplo.marvel.prueba.ui.comicslist.adapter.ComicListAdapter
 import com.ejemplo.marvel.prueba.ui.comicslist.viewmodel.ComicViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class ComicListActivity : AppCompatActivity() {
@@ -30,12 +33,9 @@ class ComicListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityComicsListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        binding.comicsRecyclerView.layoutManager = GridLayoutManager(this, 1)
-        recyclerViewComics()
+        setScreenConfig()
 
         comicViewModel = ViewModelProvider(this).get(ComicViewModel::class.java)
-
         observeViewmodel()
         cargar()
 
@@ -51,6 +51,15 @@ class ComicListActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun setScreenConfig() {
+        binding.comicsRecyclerView.layoutManager = GridLayoutManager(this, 1)
+        recyclerViewComics()
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        binding.root.setBackgroundResource(R.drawable.fondomarvel)
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -94,11 +103,20 @@ class ComicListActivity : AppCompatActivity() {
     private fun cargar() {
         if (intent != null) {
             id = intent.getStringExtra("id").toString()
+            val characterName = intent.getStringExtra("characterName").toString()
+                .uppercase(Locale.ROOT)
             comicViewModel.getComicListByCharacterId(id, currentPage * 20)
+            binding.comicsTitle.text = getString(R.string.comics_title, characterName)
         }
     }
 
     private fun loadMoreItems() {
         comicViewModel.getComicListByCharacterId(id, currentPage * 20)
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
 }
